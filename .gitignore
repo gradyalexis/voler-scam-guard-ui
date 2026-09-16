@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+*.log
+tsconfig.tsbuildinfo
+
+.env
+.env.local
+.env.*.local
+
+# Sertifikat diunduh sendiri dari Supabase (lihat README).
+certs/*
+!certs/.gitkeep

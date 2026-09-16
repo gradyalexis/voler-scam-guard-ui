@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+.env
+.env.*
+certs
+caddy
+scripts
+docker-compose.yml
+README.md

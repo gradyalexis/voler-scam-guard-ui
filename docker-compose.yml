@@ -1,0 +1,32 @@
+services:
+  dashboard:
+    build: .
+    container_name: vsg-dashboard
+    restart: always
+    init: true
+    env_file: .env
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?DATABASE_URL wajib diisi di .env}
+    ports:
+      # Next.js dengar di 3000 di dalam container, dipublikasikan sebagai 9001.
+      # Tanpa TLS — taruh di belakang reverse proxy (atau ubah DASHBOARD_URL ke
+      # https dan kembalikan service caddy) kalau dashboard dibuka ke internet.
+      - "9001:3000"
+    volumes:
+      # CA cert Supabase. DATABASE_SSL_CA_FILE relatif ke root project (= /app di container).
+      - ./certs:/app/certs:ro
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/login').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+    networks: [vsg-dashboard]
+
+networks:
+  vsg-dashboard:
+    driver: bridge
