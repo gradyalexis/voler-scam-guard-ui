@@ -131,8 +131,8 @@ export function GuildSettingsForm({ guild }: { guild: GuildFormValues }) {
         />
         <p className="text-xs text-ink-400 sm:self-center">
           Gambar yang lolos heuristik tapi mengandung link, QR code, atau pola mencurigakan dikirim
-          ke penyedia AI (Gemini, lalu Groq, lalu OpenRouter). AI hanya bisa menambah temuan; pesan
-          dihapus kalau AI ≥85% yakin. Gambar member ikut terkirim ke penyedia itu — di free tier,
+          ke penyedia AI (Gemini, lalu Groq, lalu OpenRouter). AI hanya bisa menambah temuan berupa
+          peringatan — pesan tidak dihapus berdasarkan AI saja. Gambar member ikut terkirim ke penyedia itu — di free tier,
           data boleh dipakai untuk melatih model.
         </p>
       </div>
